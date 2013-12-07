@@ -22,7 +22,7 @@ thirdStoryPointFile = system.pathForFile("thirdStoryPoint")
 local function onSceneTouch( self, event )
 	if event.phase == "began" then
 		
-		storyboard.gotoScene( "scene1", "slideUp", 800  )
+		storyboard.gotoScene( "scene3", "crossFade", 800  )
 		
 		return true
 	end
