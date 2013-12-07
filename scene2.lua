@@ -6,25 +6,23 @@
 
 local storyboard = require( "storyboard" )
 local scene = storyboard.newScene()
+require('stringCollection')
 
 ---------------------------------------------------------------------------------
 -- BEGINNING OF YOUR IMPLEMENTATION
 ---------------------------------------------------------------------------------
 
-local image, text1, text2, text3, memTimer
+local image, text1, text2, text3, text4, memTimer, randStringA, randStringB, randStringC
 
-a = {}
-a[1] = "A dragon appears!"
-a[2] = "A Rabi appears!"
-a[3] = "A wild Rapidash appears!"
-a[4] = "A centuar walks by!"
-a[5] = "A unicorn is grazing!"
-a[6] = "A Rhett walks by!"
+
+firstStoryPointFile = system.pathForFile("firstStoryPoint")
+secondStoryPointFile = system.pathForFile("secondStoryPoint")
+thirdStoryPointFile = system.pathForFile("thirdStoryPoint")
 
 local function onSceneTouch( self, event )
 	if event.phase == "began" then
 		
-		storyboard.gotoScene( "scene3", "crossFade", 800  )
+		storyboard.gotoScene( "scene1", "slideUp", 800  )
 		
 		return true
 	end
@@ -35,24 +33,37 @@ end
 function scene:createScene( event )
 	local screenGroup = self.view
 	
-	image = display.newImage( "bg2.jpg" )
+	image = display.newImageRect( "images/paperBG4.png", display.contentWidth*1.2, display.contentHeight*1.2)
+	image:setReferencePoint( display.CenterReferencePoint )
+	image.x = display.contentCenterX
+	image.y = display.contentCenterY
+	
 	screenGroup:insert( image )
 	
 	image.touch = onSceneTouch
-	
-	rand1 = math.random(6)
-	
-	text1 = display.newText( a[rand1], 0, 0, native.systemFontBold, 24 )
-	text1:setTextColor( 255 )
+	text1 = display.newText( getRandomLineFromFile(firstStoryPointFile), 0, 0, "Brankovic", 24 )
+	text1:setTextColor( 0 )
 	text1:setReferencePoint( display.CenterReferencePoint )
 	text1.x, text1.y = display.contentWidth * 0.5, 50
 	screenGroup:insert( text1 )
 	
-	text3 = display.newText( "Touch to continue.", 0, 0, native.systemFontBold, 18 )
-	text3:setTextColor( 255 ); text3.isVisible = false
+	text2 = display.newText( getRandomLineFromFile(secondStoryPointFile), 0, 0, "Brankovic", 24 )
+	text2:setTextColor( 0 )
+	text2:setReferencePoint( display.CenterReferencePoint )
+	text2.x, text2.y = display.contentWidth * 0.5, 150
+	screenGroup:insert( text2 )
+	
+	text3 = display.newText( getRandomLineFromFile(thirdStoryPointFile), 0, 0, "Brankovic", 24 )
+	text3:setTextColor( 0 )
 	text3:setReferencePoint( display.CenterReferencePoint )
-	text3.x, text3.y = display.contentWidth * 0.5, display.contentHeight - 100
+	text3.x, text3.y = display.contentWidth * 0.5, 250
 	screenGroup:insert( text3 )
+	
+	text4 = display.newText( "Touch for another story", 0, 0, "Brankovic", 18 )
+	text4:setTextColor( 0 ); text4.isVisible = false
+	text4:setReferencePoint( display.CenterReferencePoint )
+	text4.x, text4.y = display.contentWidth * 0.5, display.contentHeight - 100
+	screenGroup:insert( text4 )
 	
 	print( "\n2: createScene event" )
 end
@@ -69,14 +80,14 @@ function scene:enterScene( event )
 	-- Update Lua memory text display
 	local showMem = function()
 		image:addEventListener( "touch", image )
-		text3.isVisible = true
+		text4.isVisible = true
 	end
 	memTimer = timer.performWithDelay( 1000, showMem, 1 )
 end
 
 
 -- Called when scene is about to move offscreen:
-function scene:exitScene()
+function scene:exitScene(event)
 	
 	print( "2: exitScene event" )
 	
@@ -86,8 +97,6 @@ function scene:exitScene()
 	-- cancel timer
 	timer.cancel( memTimer ); memTimer = nil;
 	
-	-- reset label text
---	text2.text = "MemUsage: "
 end
 
 

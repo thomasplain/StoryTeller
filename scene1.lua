@@ -17,7 +17,7 @@ local image, text1, text2, text3, memTimer
 local function onSceneTouch( self, event )
 	if event.phase == "began" then
 		
-		storyboard.gotoScene( "scene2", "slideLeft", 1000  )
+		storyboard.gotoScene( "scene2", "crossFade", 1000  )
 		
 		return true
 	end
@@ -28,30 +28,23 @@ end
 function scene:createScene( event )
 	local screenGroup = self.view
 	
-	image = display.newImageRect( "paperBG1.png", display.contentWidth * 1.2, display.contentHeight * 1.2 )
+	image = display.newImageRect( "images/paperBG5.png", display.contentWidth * 1.2, display.contentHeight * 1.2)
 	image:setReferencePoint( display.CenterReferencePoint )
 	image.x = display.contentCenterX
 	image.y = display.contentCenterY
 
---	image = display.newImage( "bg.jpg" )
 	screenGroup:insert( image )
 	
 	image.touch = onSceneTouch
 	
-	text1 = display.newText( "would you like a story?", 0, 0, native.systemFontBold, 24 )
-	text1:setTextColor( 255 )
-	text1:setReferencePoint( display.CenterReferencePoint )
-	text1.x, text1.y = display.contentWidth * 0.5, 50
+	text1 = display.newText( "Would you like a story?", display.contentWidth * 0.05, display.contentHeight * 0.2, display.contentWidth, display.contentHeight, "Brankovic", 30 )
+	text1:setTextColor( 0 )
+	text1:setReferencePoint( display.LeftReferencePoint )
+--	text1.x, text1.y = display.contentWidth * 0.5, display.contentHeight * 0.5
 	screenGroup:insert( text1 )
 	
---	text2 = display.newText( "MemUsage: ", 0, 0, native.systemFont, 16 )
---	text2:setTextColor( 255 )
---	text2:setReferencePoint( display.CenterReferencePoint )
---	text2.x, text2.y = display.contentWidth * 0.5, display.contentHeight * 0.5
---	screenGroup:insert( text2 )
-	
-	text3 = display.newText( "Yes Please!", 0, 0, native.systemFontBold, 18 )
-	text3:setTextColor( 255 ); text3.isVisible = false
+	text3 = display.newText( "Yes Please!", 0, 0, "Brankovic", 18 )
+	text3:setTextColor( 0 ); text3.isVisible = false
 	text3:setReferencePoint( display.CenterReferencePoint )
 	text3.x, text3.y = display.contentWidth * 0.5, display.contentHeight - 100
 	screenGroup:insert( text3 )
@@ -89,7 +82,7 @@ function scene:exitScene( event )
 	
 	-- cancel timer
 	timer.cancel( memTimer ); memTimer = nil;
-	
+	storyboard.purgeScene( "scene2" )
 	-- reset label text
 --	text2.text = "MemUsage: "
 end
