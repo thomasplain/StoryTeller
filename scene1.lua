@@ -49,14 +49,14 @@ function scene:createScene( event )
 	text3.x, text3.y = display.contentWidth * 0.5, display.contentHeight - 100
 	screenGroup:insert( text3 )
 	
-	print( "\n1: createScene event")
+--	print( "\n1: createScene event")
 end
 
 
 -- Called immediately after scene has moved onscreen:
 function scene:enterScene( event )
 	
-	print( "1: enterScene event" )
+--	print( "1: enterScene event" )
 	
 	-- remove previous scene's view
 	storyboard.purgeScene( "scene4" )
@@ -65,8 +65,6 @@ function scene:enterScene( event )
 	local showMem = function()
 		image:addEventListener( "touch", image )
 		text3.isVisible = true
---		text2.text = text2.text .. collectgarbage("count")/1000 .. "MB"
---		text2.x = display.contentWidth * 0.5
 	end
 	memTimer = timer.performWithDelay( 1000, showMem, 1 )
 end
@@ -75,7 +73,7 @@ end
 -- Called when scene is about to move offscreen:
 function scene:exitScene( event )
 	
-	print( "1: exitScene event" )
+--	print( "1: exitScene event" )
 	
 	-- remove touch listener for image
 	image:removeEventListener( "touch", image )
@@ -91,7 +89,7 @@ end
 -- Called prior to the removal of scene's "view" (display group)
 function scene:destroyScene( event )
 	
-	print( "((destroying scene 1's view))" )
+--	print( "((destroying scene 1's view))" )
 end
 
 ---------------------------------------------------------------------------------

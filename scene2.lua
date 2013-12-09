@@ -41,38 +41,38 @@ function scene:createScene( event )
 	screenGroup:insert( image )
 	
 	image.touch = onSceneTouch
-	text1 = display.newText( getRandomLineFromFile(firstStoryPointFile), 0, 0, "Brankovic", 24 )
+	text1 = display.newText( getRandomLineFromFile(firstStoryPointFile), 10, 30, display.contentWidth * 0.9, display.contentHeight, "Brankovic", 35 )
 	text1:setTextColor( 0 )
 	text1:setReferencePoint( display.CenterReferencePoint )
-	text1.x, text1.y = display.contentWidth * 0.5, 50
+--	text1.x, text1.y = display.contentWidth * 0.5, 50
 	screenGroup:insert( text1 )
 	
-	text2 = display.newText( getRandomLineFromFile(secondStoryPointFile), 0, 0, "Brankovic", 24 )
+	text2 = display.newText( getRandomLineFromFile(secondStoryPointFile), 10, 150, display.contentWidth * 0.9, display.contentHeight, "Brankovic", 35 )
 	text2:setTextColor( 0 )
 	text2:setReferencePoint( display.CenterReferencePoint )
-	text2.x, text2.y = display.contentWidth * 0.5, 150
+--	text2.x, text2.y = display.contentWidth * 0.5, 150
 	screenGroup:insert( text2 )
 	
-	text3 = display.newText( getRandomLineFromFile(thirdStoryPointFile), 0, 0, "Brankovic", 24 )
+	text3 = display.newText( getRandomLineFromFile(thirdStoryPointFile), 10, 280, display.contentWidth * 0.9, display.contentHeight, "Brankovic", 35 )
 	text3:setTextColor( 0 )
 	text3:setReferencePoint( display.CenterReferencePoint )
-	text3.x, text3.y = display.contentWidth * 0.5, 250
+--	text3.x, text3.y = display.contentWidth * 0.5, 250
 	screenGroup:insert( text3 )
 	
 	text4 = display.newText( "Touch for another story", 0, 0, "Brankovic", 18 )
 	text4:setTextColor( 0 ); text4.isVisible = false
 	text4:setReferencePoint( display.CenterReferencePoint )
-	text4.x, text4.y = display.contentWidth * 0.5, display.contentHeight - 100
+	text4.x, text4.y = display.contentWidth * 0.5, display.contentHeight - 50
 	screenGroup:insert( text4 )
 	
-	print( "\n2: createScene event" )
+--	print( "\n2: createScene event" )
 end
 
 
 -- Called immediately after scene has moved onscreen:
 function scene:enterScene( event )
 	
-	print( "2: enterScene event" )
+--	print( "2: enterScene event" )
 	
 	-- remove previous scene's view
 	storyboard.purgeScene( "scene1" )
@@ -89,7 +89,7 @@ end
 -- Called when scene is about to move offscreen:
 function scene:exitScene(event)
 	
-	print( "2: exitScene event" )
+--	print( "2: exitScene event" )
 	
 	-- remove touch listener for image
 	image:removeEventListener( "touch", image )
@@ -103,7 +103,7 @@ end
 -- Called prior to the removal of scene's "view" (display group)
 function scene:destroyScene( event )
 	
-	print( "((destroying scene 2's view))" )
+--	print( "((destroying scene 2's view))" )
 end
 
 ---------------------------------------------------------------------------------
