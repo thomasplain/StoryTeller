@@ -18,7 +18,6 @@ function getLineFromFile(filename, lineNumber)
 end
 
 function getRandomLineFromFile(filename)
-	math.randomseed(os.time())
 	fileString = readWholeFile(filename)
 	local lines = splitStringByLine(fileString)
 	upper = table.getn(lines) - 1

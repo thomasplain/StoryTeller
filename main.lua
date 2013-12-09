@@ -6,6 +6,8 @@ display.setStatusBar( display.HiddenStatusBar )
 local storyboard = require "storyboard"
 local widget = require "widget"
 
+math.randomseed(os.time())
+
 -- load first scene
 storyboard.gotoScene( "scene1", "crossFade", 1000 )
 
